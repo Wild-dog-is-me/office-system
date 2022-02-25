@@ -20,14 +20,20 @@ import java.io.PrintWriter;
  * @Description: 要做耿沁园的男人
  */
 
+/**
+ * 当未登录或者token失效时访问接口是，自定义返回结果
+ */
 @Component
 public class RestAuthorizationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
         response.setCharacterEncoding("UTF-8");
+        //设置数据格式为json格式
         response.setContentType("application/json");
+        //拿到输出流
         PrintWriter out = response.getWriter();
-        RespBean bean = RespBean.error("尚未登陆，请登陆");
+        //未登录或失效
+        RespBean bean = RespBean.error("未登录或用户信息过期，请重新登录！");
         bean.setCode(401);
         out.write(new ObjectMapper().writeValueAsString(bean));
         out.flush();

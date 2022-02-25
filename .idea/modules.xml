@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/kwbg.iml" filepath="$PROJECT_DIR$/kwbg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kwbg(back).iml" filepath="$PROJECT_DIR$/kwbg(back).iml" />
       <module fileurl="file://$PROJECT_DIR$/kwbg-generator/kwbg-generator.iml" filepath="$PROJECT_DIR$/kwbg-generator/kwbg-generator.iml" />
       <module fileurl="file://$PROJECT_DIR$/kwbg-server/kwbg-server.iml" filepath="$PROJECT_DIR$/kwbg-server/kwbg-server.iml" />
     </modules>

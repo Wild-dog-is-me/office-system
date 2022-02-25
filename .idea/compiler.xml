@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="kwbg" target="1.5" />
+      <module name="kwbg(back)" target="1.5" />
       <module name="kwbg-generator" target="8" />
       <module name="kwbg-server" target="8" />
     </bytecodeTargetLevel>
