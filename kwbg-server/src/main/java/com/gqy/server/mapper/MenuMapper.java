@@ -3,6 +3,8 @@ package com.gqy.server.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gqy.server.pojo.Menu;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -13,4 +15,10 @@ import com.gqy.server.pojo.Menu;
  */
 public interface MenuMapper extends BaseMapper<Menu> {
 
+    /**
+     * 根据用户id查询菜单
+     * @param id
+     * @return
+     */
+    List<Menu> getMenuByAdminId(Integer id);
 }

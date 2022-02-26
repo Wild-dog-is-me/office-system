@@ -2,6 +2,9 @@ package com.gqy.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gqy.server.pojo.Admin;
+import com.gqy.server.pojo.Menu;
+
+import java.util.List;
 
 /**
  * <p>

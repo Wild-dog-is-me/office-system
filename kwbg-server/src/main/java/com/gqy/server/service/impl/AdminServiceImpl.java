@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.gqy.server.config.security.JwtTokenUtil;
 import com.gqy.server.mapper.AdminMapper;
 import com.gqy.server.pojo.Admin;
+import com.gqy.server.pojo.Menu;
 import com.gqy.server.pojo.RespBean;
 import com.gqy.server.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,7 +33,6 @@ import java.util.Map;
  * @since 2022-02-22
  */
 @Service
-
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService {
 
     @Autowired
