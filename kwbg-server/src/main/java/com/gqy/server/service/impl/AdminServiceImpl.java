@@ -30,6 +30,7 @@ import java.util.Map;
  * @since 2022-02-22
  */
 @Service
+
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService {
 
     @Autowired
