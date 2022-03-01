@@ -30,10 +30,10 @@ public class CaptchaController {
     private DefaultKaptcha defaultKaptcha;
 
     @ApiOperation(value = "验证码")
-    @GetMapping(value = "/captcha",produces = "image/jpeg")
+    @GetMapping(value = "/captcha",produces = "image/jpg")
     public void captcha(HttpServletRequest request, HttpServletResponse response) {
         // 定义response输出类型为image/jpeg类型
-        response.setContentType("image/jpeg");
+        response.setContentType("image/jpg");
 
         response.setDateHeader("Expires", 0);
         // Set standard HTTP/1.1 no-cache headers.
@@ -43,13 +43,14 @@ public class CaptchaController {
         // Set standard HTTP/1.0 no-cache header.
         response.setHeader("Pragma", "no-cache");
         // return a jpeg
-        response.setContentType("image/jpeg");
+        response.setContentType("image/jpg");
         //-------------------生成验证码 begin --------------------------
         //获取验证码文本内容
         String text = defaultKaptcha.createText();
         System.out.println("验证码内容：" + text);
         //将验证码放入session中
         request.getSession().setAttribute("captcha", text);
+
         //根据文本内容创建图形验证码
         BufferedImage image = defaultKaptcha.createImage(text);
         ServletOutputStream outputStream = null;
