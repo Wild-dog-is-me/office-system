@@ -1,4 +1,4 @@
-package com.gqy.server.config.security.component;
+package com.gqy.server.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gqy.server.pojo.RespBean;

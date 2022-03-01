@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * <p>
- * 服务类
+ *  服务类
  * </p>
  *
  * @author 耿沁园
@@ -17,13 +17,7 @@ public interface IMenuService extends IService<Menu> {
 
     /**
      * 根据用户id查询菜单列表
-     *
      * @return
      */
     List<Menu> getMenuByAdminId();
-
-    /**
-     * 根据角色获取菜单列表
-     */
-    List<Menu> getMenusWithRole();
 }
