@@ -1,13 +1,13 @@
 package com.gqy.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.gqy.server.config.security.JwtTokenUtil;
+import com.gqy.server.config.security.component.JwtTokenUtil;
 import com.gqy.server.mapper.AdminMapper;
+import com.gqy.server.mapper.RoleMapper;
 import com.gqy.server.pojo.Admin;
-import com.gqy.server.pojo.Menu;
 import com.gqy.server.pojo.RespBean;
+import com.gqy.server.pojo.Role;
 import com.gqy.server.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,6 +43,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private AdminMapper adminMapper;
+    @Autowired
+    private RoleMapper roleMapper;
 
     @Value("${jwt.tokenHead}")
     private String tokenHead;
@@ -101,5 +103,16 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     public Admin getAdminByUserName(String username) {
         return adminMapper.selectOne(new QueryWrapper<Admin>().eq("username",username)
                 .eq("enabled",true));
+    }
+
+    /**
+     * 根据用户id查询角色列表
+     *
+     * @param adminId
+     * @return
+     */
+    @Override
+    public List<Role> getRoles(Integer adminId) {
+        return roleMapper.getRoles(adminId);
     }
 }
