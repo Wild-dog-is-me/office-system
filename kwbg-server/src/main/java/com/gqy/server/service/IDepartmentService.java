@@ -2,6 +2,9 @@ package com.gqy.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.gqy.server.pojo.Department;
+import com.gqy.server.pojo.RespBean;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,7 @@ import com.gqy.server.pojo.Department;
  */
 public interface IDepartmentService extends IService<Department> {
 
+    List<Department> getAllDepartments();
+
+    RespBean addDep(Department dep);
 }
