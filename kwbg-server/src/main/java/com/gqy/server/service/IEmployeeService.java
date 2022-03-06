@@ -2,6 +2,9 @@ package com.gqy.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.gqy.server.pojo.Employee;
+import com.gqy.server.pojo.RespPageBean;
+
+import java.time.LocalDate;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.gqy.server.pojo.Employee;
  */
 public interface IEmployeeService extends IService<Employee> {
 
+    RespPageBean  getEmployeeByPage(Integer currentPage, Integer size, Employee employee, LocalDate[] beginDateScope);
 }

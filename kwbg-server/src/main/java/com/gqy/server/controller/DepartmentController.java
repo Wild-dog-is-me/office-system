@@ -6,6 +6,7 @@ import com.gqy.server.pojo.RespBean;
 import com.gqy.server.service.IDepartmentService;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,5 +37,11 @@ public class DepartmentController {
     @PostMapping("/")
     public RespBean addDep(@RequestBody Department dep) {
         return departmentService.addDep(dep);
+    }
+
+    @ApiOperation(value = "删除部门")
+    @DeleteMapping("/")
+    public RespBean deleteDep(@PathVariable Integer id) {
+        return departmentService.deleteDep(id);
     }
 }

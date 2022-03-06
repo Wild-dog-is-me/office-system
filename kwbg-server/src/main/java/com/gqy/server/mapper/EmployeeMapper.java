@@ -1,7 +1,12 @@
 package com.gqy.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gqy.server.pojo.Employee;
+import org.apache.ibatis.annotations.Param;
+
+import java.time.LocalDate;
 
 /**
  * <p>
@@ -13,4 +18,6 @@ import com.gqy.server.pojo.Employee;
  */
 public interface EmployeeMapper extends BaseMapper<Employee> {
 
+    IPage<Employee> getEmployeeByPage(Page<Employee> page, @Param("employee") Employee employee,
+                                      @Param("beginDateScope") LocalDate[] beginDateScope);
 }

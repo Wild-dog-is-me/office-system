@@ -18,4 +18,6 @@ public interface DepartmentMapper extends BaseMapper<Department> {
     List<Department> getAllDepartments(Integer parentId);
 
     void addDep(Department dep);
+
+    void deleteDep(Department dep);
 }

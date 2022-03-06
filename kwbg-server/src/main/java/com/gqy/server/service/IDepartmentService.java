@@ -19,4 +19,6 @@ public interface IDepartmentService extends IService<Department> {
     List<Department> getAllDepartments();
 
     RespBean addDep(Department dep);
+
+    RespBean deleteDep(Integer id);
 }

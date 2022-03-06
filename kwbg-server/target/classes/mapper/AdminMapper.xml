@@ -16,9 +16,35 @@
         <result column="remark" property="remark" />
     </resultMap>
 
+    <resultMap id="AdminWithRole" type="com.gqy.server.pojo.Admin" extends="BaseResultMap">
+        <collection property="roles" ofType="com.gqy.server.pojo.Role">
+            <id column="rid" property="id"/>
+            <result column="rname" property="name"/>
+            <result column="rnameZh" property="nameZh"/>
+        </collection>
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, name, phone, telephone, address, enabled, username, password, userFace, remark
     </sql>
+    <select id="getAllAdmins" resultMap="AdminWithRole">
+        SELECT
+        a.*,
+        r.id rid,
+        r.`name` rname,
+        r.nameZh rnameZh
+        FROM
+        t_admin a
+        INNER JOIN t_admin_role ar ON a.id = ar.adminId
+        INNER JOIN t_role r ON r.id = ar.rid
+        WHERE
+        a.id != #{id}
+        <if test="keywords != null and keywords != ''">
+            AND a.`name` LIKE concat('%', #{keywords}, '%')
+        </if>
+        ORDER BY
+        a.id;
+    </select>
 
 </mapper>
