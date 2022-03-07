@@ -1,12 +1,20 @@
 package com.gqy.server.controller;
 
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import com.gqy.server.pojo.*;
 import com.gqy.server.service.*;
 import io.swagger.annotations.ApiOperation;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -107,5 +115,34 @@ public class EmployeeController {
             return RespBean.success("删除成功");
         }
         return RespBean.error("删除失败");
+    }
+
+    @ApiOperation(value = "导出员工数据")
+    @GetMapping(value = "/export",produces = "application/octet-stream")
+    public void exportEmployee(HttpServletResponse response) {
+        List<Employee> list = employeeService.getEmployee(null);
+        ExportParams exportParams = new ExportParams("员工表", "员工表", ExcelType.HSSF);
+        Workbook sheets = ExcelExportUtil.exportExcel(exportParams, Employee.class, list);
+        ServletOutputStream outputStream = null;
+        try {
+            //以流形式导出
+            response.setHeader("content-type", "application/octet-stream");
+            //防止中文乱码
+            response.setHeader("content-disposition", "attachment;filename=" +
+                    URLEncoder.encode("员工表.xls", "UTF-8"));
+            outputStream = response.getOutputStream();
+            //写出数据
+            sheets.write(outputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (null != outputStream) {
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

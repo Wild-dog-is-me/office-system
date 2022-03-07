@@ -1,5 +1,6 @@
 package com.gqy.server.pojo;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -34,6 +35,7 @@ public class Joblevel implements Serializable {
     private Integer id;
 
     @ApiModelProperty(value = "职称名称")
+    @Excel(name = "职位名称")
     private String name;
 
     @ApiModelProperty(value = "职称等级")

@@ -6,6 +6,7 @@ import com.gqy.server.pojo.RespBean;
 import com.gqy.server.pojo.RespPageBean;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * <p>
@@ -22,4 +23,6 @@ public interface IEmployeeService extends IService<Employee> {
     RespBean maxWorkID();
 
     RespBean addEmp(Employee employee);
+
+    List<Employee> getEmployee(Integer id);
 }
