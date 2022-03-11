@@ -64,4 +64,9 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     public List<Employee> getEmployee(Integer id) {
         return employeeMapper.getEmployee(id);
     }
+
+    @Override
+    public Employee getIdSelectNationByName(Map<String, String> employeeMap) {
+        return null;
+    }
 }

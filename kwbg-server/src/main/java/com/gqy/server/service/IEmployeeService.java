@@ -7,6 +7,7 @@ import com.gqy.server.pojo.RespPageBean;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -25,4 +26,6 @@ public interface IEmployeeService extends IService<Employee> {
     RespBean addEmp(Employee employee);
 
     List<Employee> getEmployee(Integer id);
+
+    Employee getIdSelectNationByName(Map<String, String> employeeMap);
 }

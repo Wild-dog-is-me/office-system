@@ -6,10 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -22,7 +22,9 @@ import java.time.LocalDateTime;
  * @since 2022-02-22
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode(callSuper = false,of = "name")
 @Accessors(chain = true)
 @TableName("t_joblevel")
 @ApiModel(value="Joblevel对象", description="")
@@ -36,6 +38,7 @@ public class Joblevel implements Serializable {
 
     @ApiModelProperty(value = "职称名称")
     @Excel(name = "职位名称")
+    @NonNull
     private String name;
 
     @ApiModelProperty(value = "职称等级")

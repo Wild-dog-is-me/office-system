@@ -7,10 +7,10 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,10 +24,12 @@ import java.time.LocalDateTime;
  */
 
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false, of = "name")
+@RequiredArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
 @TableName("t_position")
-@ApiModel(value="Position对象", description="")
+@ApiModel(value = "Position对象", description = "")
 public class Position implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,10 +40,11 @@ public class Position implements Serializable {
 
     @ApiModelProperty(value = "职位")
     @Excel(name = "职位")
+    @NonNull
     private String name;
 
     @ApiModelProperty(value = "创建时间")
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
     private LocalDateTime createDate;
 
     @ApiModelProperty(value = "是否启用")

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.gqy.server.mapper.SalaryMapper;
 import com.gqy.server.pojo.Salary;
 import com.gqy.server.service.ISalaryService;
+import org.springframework.security.crypto.encrypt.BytesEncryptor;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +17,4 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SalaryServiceImpl extends ServiceImpl<SalaryMapper, Salary> implements ISalaryService {
-
 }

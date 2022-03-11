@@ -2,7 +2,9 @@ package com.gqy.server.controller;
 
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import com.gqy.server.pojo.*;
 import com.gqy.server.service.*;
@@ -10,13 +12,18 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -118,7 +125,7 @@ public class EmployeeController {
     }
 
     @ApiOperation(value = "导出员工数据")
-    @GetMapping(value = "/export",produces = "application/octet-stream")
+    @GetMapping(value = "/export", produces = "application/octet-stream")
     public void exportEmployee(HttpServletResponse response) {
         List<Employee> list = employeeService.getEmployee(null);
         ExportParams exportParams = new ExportParams("员工表", "员工表", ExcelType.HSSF);
@@ -144,5 +151,54 @@ public class EmployeeController {
                 }
             }
         }
+    }
+
+    @ApiOperation("员工数据导入")
+    @PostMapping("/import")
+    public RespBean employeeImport(MultipartFile file) {
+        ImportParams importParams = new ImportParams();
+        //去掉标题行防止报错
+        importParams.setTitleRows(1);
+        //获取所有民族
+        List<Nation> nations = nationService.list();
+        //部门
+        List<Department> departments = departmentService.list();
+        //职称
+        List<Joblevel> joblevels = joblevelService.list();
+        //职位
+        List<Position> positions = positionService.list();
+        //政治面貌
+        List<PoliticsStatus> politicsStatuses = politicsStatusService.list();
+        try {
+            List<Employee> employees = ExcelImportUtil.importExcel(file.getInputStream(), Employee.class, importParams);
+            employees.forEach(employee -> {
+                //设置员工对象的民族id
+                employee.setNationId(nations.get(
+                        nations.indexOf(new Nation(employee.getNation().getName()))
+                ).getId());
+                //设置员工对象的部门id
+                employee.setDepartmentId(departments.get(
+                        departments.indexOf(new Department(employee.getDepartment().getName()))
+                ).getId());
+                //设置员工对象的职称id
+                employee.setJobLevelId(joblevels.get(
+                        joblevels.indexOf(new Joblevel(employee.getJoblevel().getName()))
+                ).getId());
+                //设置员工对象的政治面貌id
+                employee.setPoliticId(politicsStatuses.get(
+                        politicsStatuses.indexOf(new PoliticsStatus(employee.getPoliticsStatus().getName()))
+                ).getId());
+                //设置员工对象的职位id
+                employee.setPosId(positions.get(
+                        positions.indexOf(new Position(employee.getPosition().getName()))
+                ).getId());
+            });
+            if (employeeService.saveBatch(employees)) {
+                return RespBean.success("导入成功！");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return RespBean.error("导入失败！");
     }
 }
