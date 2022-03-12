@@ -18,7 +18,7 @@ import java.time.LocalDate;
 
 /**
  * <p>
- *      实体类
+ * 实体类
  * </p>
  *
  * @author 耿沁园
@@ -46,12 +46,12 @@ public class Employee implements Serializable {
     private String gender;
 
     @ApiModelProperty(value = "出生日期")
-    @Excel(name = "出生日期",width = 20,format = "yyyy-MM-dd")
+    @Excel(name = "出生日期", width = 20, format = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
     private LocalDate birthday;
 
     @ApiModelProperty(value = "身份证号")
-    @Excel(name = "身份证号",width = 30)
+    @Excel(name = "身份证号", width = 30)
     private String idCard;
 
     @ApiModelProperty(value = "婚姻状况")
@@ -69,11 +69,11 @@ public class Employee implements Serializable {
     private Integer politicId;
 
     @ApiModelProperty(value = "邮箱")
-    @Excel(name = "邮箱",width = 30)
+    @Excel(name = "邮箱", width = 30)
     private String email;
 
     @ApiModelProperty(value = "电话号码")
-    @Excel(name = "电话号码",width = 15)
+    @Excel(name = "电话号码", width = 15)
     private String phone;
 
     @ApiModelProperty(value = "联系地址")
@@ -98,16 +98,16 @@ public class Employee implements Serializable {
     private String tiptopDegree;
 
     @ApiModelProperty(value = "所属专业")
-    @Excel(name = "所属专业",width = 20)
+    @Excel(name = "所属专业", width = 20)
     private String specialty;
 
     @ApiModelProperty(value = "毕业院校")
-    @Excel(name = "毕业院校",width = 20)
+    @Excel(name = "毕业院校", width = 20)
     private String school;
 
     @ApiModelProperty(value = "入职日期")
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
-    @Excel(name = "入职日期",width = 20,format = "yyyy-MM-dd")
+    @Excel(name = "入职日期", width = 20, format = "yyyy-MM-dd")
     private LocalDate beginDate;
 
     @ApiModelProperty(value = "在职状态")
@@ -119,27 +119,27 @@ public class Employee implements Serializable {
     private String workID;
 
     @ApiModelProperty(value = "合同期限")
-    @Excel(name = "合同期限",suffix = "年")
+    @Excel(name = "合同期限", suffix = "年")
     private Double contractTerm;
 
     @ApiModelProperty(value = "转正日期")
-    @Excel(name = "转正日期",width = 20,format = "yyyy-MM-dd")
+    @Excel(name = "转正日期", width = 20, format = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
     private LocalDate conversionTime;
 
     @ApiModelProperty(value = "离职日期")
-    @Excel(name = "离职日期",width = 20,format = "yyyy-MM-dd")
+    @Excel(name = "离职日期", width = 20, format = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
     private LocalDate notWorkDate;
 
     @ApiModelProperty(value = "合同起始日期")
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
-    @Excel(name = "合同起始日期",width = 30,format = "yyyy-MM-dd")
+    @Excel(name = "合同起始日期", width = 30, format = "yyyy-MM-dd")
     private LocalDate beginContract;
 
     @ApiModelProperty(value = "合同终止日期")
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
-    @Excel(name = "合同终止日期",width = 30,format = "yyyy-MM-dd")
+    @Excel(name = "合同终止日期", width = 30, format = "yyyy-MM-dd")
     private LocalDate endContract;
 
     @ApiModelProperty(value = "工龄")
@@ -173,4 +173,8 @@ public class Employee implements Serializable {
     @TableField(exist = false)
     @ExcelEntity(name = "职位")
     private Position position;
+
+    @ApiModelProperty(value = "工资套账")
+    @TableField(exist = false)
+    private Salary salary;
 }
