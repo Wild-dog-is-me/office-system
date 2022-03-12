@@ -33,18 +33,12 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     private EmployeeMapper employeeMapper;
 
     @Override
-    public RespPageBean getEmployeeByPage(Integer currentPage, Integer size, Employee employee, LocalDate[] beginDataScope) {
-        /**
-         * 开启分页
-         */
+    public RespPageBean getEmployeeByPage(Integer currentPage, Integer size, Employee employee, LocalDate[] beginDateScope) {
         Page<Employee> page = new Page<>(currentPage, size);
-        /**
-         * 只要我们在参数中加入了page，mybatis就会自动挡的帮我们分类
-         */
-        IPage<Employee> employeeIPage = employeeMapper.getEmployeeByPage(page,employee,beginDataScope);
-        return new RespPageBean(employeeIPage.getTotal(),employeeIPage.getRecords());
+        IPage<Employee> employeeByPage = employeeMapper.getEmployeeByPage(page, employee, beginDateScope);
+        RespPageBean respPageBean = new RespPageBean(employeeByPage.getTotal(), employeeByPage.getRecords());
+        return respPageBean;
     }
-
 
     @Override
     public RespBean maxWorkID() {
@@ -72,10 +66,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     }
 
     @Override
-    public RespPageBean  getEmployeeWithSalary(Integer currentPage, Integer size) {
-        Page<Employee> page = new Page<>(currentPage, size);
-        IPage<Employee> employeeIPage = employeeMapper.getEmployeeWithSalary(page);
-        RespPageBean respPageBean = new RespPageBean(employeeIPage.getTotal(), employeeIPage.getRecords());
-        return respPageBean;
+    public Employee getIdSelectNationByName(Map<String, String> employeeMap) {
+        return null;
     }
 }
