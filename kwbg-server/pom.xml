@@ -7,7 +7,6 @@
         <groupId>com.gqy</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>kwbg-server</artifactId>
@@ -116,25 +115,6 @@
             <version>2.10.0</version>
         </dependency>
 
-        <!-- easypoi依赖 -->
-        <dependency>
-            <groupId>cn.afterturn</groupId>
-            <artifactId>easypoi-spring-boot-starter</artifactId>
-            <version>4.1.3</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-websocket</artifactId>
-            <version>2.3.7.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <version>2.3.7.RELEASE</version>
-        </dependency>
     </dependencies>
 
 </project>
